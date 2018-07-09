@@ -1,5 +1,7 @@
 package com.rightmove.property;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -9,6 +11,7 @@ import java.util.Set;
 /**
  * A simple in memory implentation of the {@link PropertyDao}.
  */
+@Component
 public class PropertyDaoImpl implements PropertyDao {
 
 	private static Map<Long, PropertyEntity> properties = new HashMap<>();
