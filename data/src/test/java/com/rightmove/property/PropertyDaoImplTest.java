@@ -26,7 +26,7 @@ public class PropertyDaoImplTest {
 
 	@Test
 	public void shouldSaveProperty() throws Exception {
-		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", "FLAT");
+		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 		underTest.save(property);
 
 		Optional<PropertyEntity> one = underTest.getOne(1L);
@@ -44,12 +44,12 @@ public class PropertyDaoImplTest {
 
 	@Test
 	public void shouldReturnDifferentList() throws Exception {
-		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", "FLAT");
+		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 		underTest.save(property);
 
 		Set<PropertyEntity> propertyEntityList = underTest.getAll();
 
-		propertyEntityList.add(new PropertyEntity(2L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", "FLAT"));
+		propertyEntityList.add(new PropertyEntity(2L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT));
 
 		Set<PropertyEntity> result = underTest.getAll();
 
@@ -58,11 +58,11 @@ public class PropertyDaoImplTest {
 
 	@Test
 	public void shouldUpdateProperty() throws Exception {
-		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", "FLAT");
+		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 
 		underTest.save(property);
 
-		PropertyEntity propertyUpdate = new PropertyEntity(1L, 200_000L, 3, 1, "34", "Soho Square", "London", "W1D 3QU", "FLAT");
+		PropertyEntity propertyUpdate = new PropertyEntity(1L, 200_000L, 3, 1, "34", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 
 		underTest.save(propertyUpdate);
 
@@ -75,7 +75,7 @@ public class PropertyDaoImplTest {
 
 	@Test
 	public void shouldDeleteAllProperties() throws Exception {
-		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", "FLAT");
+		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 
 		underTest.save(property);
 
@@ -88,8 +88,8 @@ public class PropertyDaoImplTest {
 
 	@Test
 	public void shouldGetAll() throws Exception {
-		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", "FLAT");
-		PropertyEntity property2 = new PropertyEntity(2L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", "FLAT");
+		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
+		PropertyEntity property2 = new PropertyEntity(2L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 
 		underTest.save(property);
 		underTest.save(property2);

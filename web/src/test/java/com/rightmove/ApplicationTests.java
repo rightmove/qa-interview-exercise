@@ -3,6 +3,7 @@ package com.rightmove;
 
 import com.rightmove.property.PropertyDao;
 import com.rightmove.property.PropertyEntity;
+import com.rightmove.property.PropertyType;
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;
 import io.restassured.http.ContentType;
@@ -37,8 +38,8 @@ public class ApplicationTests {
 
 	@Test
 	public void shouldFindPropertyByPostcode() {
-		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", "FLAT");
-		PropertyEntity property2 = new PropertyEntity(2L, 100_000L, 3, 1, "33", "Soho Square", "London", "CR4 1QU", "FLAT");
+		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
+		PropertyEntity property2 = new PropertyEntity(2L,1_000_000L,7,2,"12","Richard Lane", "London","W1F 3FT", PropertyType.DETACHED);
 		propertyDao.save(property);
 		propertyDao.save(property2);
 

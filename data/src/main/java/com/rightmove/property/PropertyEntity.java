@@ -9,10 +9,9 @@ public class PropertyEntity {
 	private final String address;
 	private final String region;
 	private final String postcode;
-	private final String type;
+	private final PropertyType type;
 
-
-	public PropertyEntity(long reference, long price, int bedrooms, Integer bathrooms, String number, String address, String region, String postcode, String type) {
+	public PropertyEntity(long reference, long price, int bedrooms, Integer bathrooms, String number, String address, String region, String postcode, PropertyType type) {
 		this.reference = reference;
 		this.price = price;
 		this.bedrooms = bedrooms;
@@ -56,7 +55,7 @@ public class PropertyEntity {
 		return postcode;
 	}
 
-	public String getType() {
+	public PropertyType getType() {
 		return type;
 	}
 }
