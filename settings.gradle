@@ -1,0 +1,4 @@
+rootProject.name = 'backend-test-one-day'
+
+include 'web'
+include 'data'
