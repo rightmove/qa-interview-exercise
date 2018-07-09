@@ -59,6 +59,21 @@ public class ApplicationTests {
 
 	@Test
 	public void shouldNotFindPropertyWherePostcodeNotFound() throws Exception {
+		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
+		PropertyEntity property2 = new PropertyEntity(2L,1_000_000L,7,2,"12","Richard Lane", "London","W1F 3FT", PropertyType.DETACHED);
+		propertyDao.save(property);
+		propertyDao.save(property2);
 
+		JsonPath jsonPath = given()
+				.when()
+				.accept(ContentType.JSON)
+				.queryParam("postcode", "WA11 9RW")
+				.get("/property")
+				.then()
+				.statusCode(HttpStatus.SC_OK)
+				.extract()
+				.jsonPath();
+
+		assertThat(jsonPath.getList("properties")).hasSize(0);
 	}
 }
