@@ -1,5 +1,5 @@
 package com.rightmove.property;
 
 public enum PropertyType {
-	FLAT, TERRACED, DETACHED, MANSION
+	FLAT, TERRACED, DETACHED, SEMI_DETACHED
 }
