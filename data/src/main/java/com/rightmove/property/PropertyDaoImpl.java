@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * A simple in memory implentation of the {@link PropertyDao}.
+ * A simple in memory implementation of the {@link PropertyDao}.
  */
 @Component
 public class PropertyDaoImpl implements PropertyDao {
