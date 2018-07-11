@@ -1,5 +1,7 @@
 package com.rightmove.property;
 
+import java.util.Objects;
+
 public class PropertyEntity {
 	private final long reference;
 	private final long price;
@@ -57,5 +59,18 @@ public class PropertyEntity {
 
 	public PropertyType getType() {
 		return type;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		PropertyEntity that = (PropertyEntity) o;
+		return reference == that.reference;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(reference);
 	}
 }
