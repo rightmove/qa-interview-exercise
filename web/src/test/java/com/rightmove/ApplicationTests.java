@@ -59,7 +59,7 @@ public class ApplicationTests {
 				.jsonPath();
 
 		assertThat(jsonPath.getList("properties")).hasSize(1);
-		assertThat(jsonPath.getLong("properties[0].reference")).isEqualTo(1L);
+		assertThat(jsonPath.getLong("properties[0].id")).isEqualTo(1L);
 	}
 
 	@Test
