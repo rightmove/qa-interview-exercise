@@ -1,11 +1,11 @@
 package com.rightmove.datasetup;
 
-import com.rightmove.property.PropertyEntity;
-import com.rightmove.property.PropertyType;
+import com.rightmove.property.data.PropertyEntity;
+import com.rightmove.property.data.PropertyType;
 
 public class PropertyEntityBuilder {
 
-	private long reference;
+	private long id;
 	private long price;
 	private int bedrooms;
 	private Integer bathrooms;
@@ -19,9 +19,9 @@ public class PropertyEntityBuilder {
 
 	}
 
-	public static PropertyEntityBuilder aDefaultPropertyEntity() {
+	public static PropertyEntityBuilder aDefaultPropertyEntity(long id) {
 		return new PropertyEntityBuilder()
-				.reference(1234L)
+				.id(id)
 				.price(1_000_000L)
 				.bedrooms(2)
 				.bathrooms(1)
@@ -32,8 +32,8 @@ public class PropertyEntityBuilder {
 				.type(PropertyType.DETACHED);
 	}
 
-	public PropertyEntityBuilder reference(long reference) {
-		this.reference = reference;
+	public PropertyEntityBuilder id(long id) {
+		this.id = id;
 		return this;
 	}
 
@@ -78,6 +78,6 @@ public class PropertyEntityBuilder {
 	}
 
 	public PropertyEntity build() {
-		return new PropertyEntity(reference, price, bedrooms, bathrooms, number, address, region, postcode, type);
+		return new PropertyEntity(id, price, bedrooms, bathrooms, number, address, region, postcode, type);
 	}
 }

@@ -1,4 +1,4 @@
-package com.rightmove.property;
+package com.rightmove.property.data;
 
 import java.util.Optional;
 import java.util.Set;

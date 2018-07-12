@@ -1,4 +1,4 @@
-package com.rightmove.property;
+package com.rightmove.property.data;
 
 
 import org.junit.After;
@@ -32,7 +32,7 @@ public class PropertyDaoImplTest {
 		Optional<PropertyEntity> one = underTest.getOne(1L);
 
 		assertThat(one).isPresent();
-		assertThat(one.get().getReference()).isEqualTo(1L);
+		assertThat(one.get().getId()).isEqualTo(1L);
 	}
 
 	@Test
@@ -70,7 +70,7 @@ public class PropertyDaoImplTest {
 
 		assertThat(underTest.getAll()).hasSize(1);
 		assertThat(result.get().getPrice()).isEqualTo(200_000L);
-		assertThat(result.get().getReference()).isEqualTo(1L);
+		assertThat(result.get().getId()).isEqualTo(1L);
 	}
 
 	@Test

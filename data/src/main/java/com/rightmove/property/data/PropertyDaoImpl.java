@@ -1,4 +1,4 @@
-package com.rightmove.property;
+package com.rightmove.property.data;
 
 import org.springframework.stereotype.Component;
 
@@ -33,6 +33,6 @@ public class PropertyDaoImpl implements PropertyDao {
 
 	@Override
 	public void save(PropertyEntity propertyEntity) {
-		properties.put(propertyEntity.getReference(), propertyEntity);
+		properties.put(propertyEntity.getId(), propertyEntity);
 	}
 }

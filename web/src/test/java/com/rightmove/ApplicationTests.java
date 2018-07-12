@@ -1,14 +1,14 @@
 package com.rightmove;
 
-
 import com.rightmove.datasetup.PropertyEntityBuilder;
-import com.rightmove.property.PropertyDao;
-import com.rightmove.property.PropertyEntity;
+import com.rightmove.property.data.PropertyDao;
+import com.rightmove.property.data.PropertyEntity;
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import org.apache.http.HttpStatus;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,10 +36,15 @@ public class ApplicationTests {
 		RestAssured.config = RestAssured.config().logConfig(LogConfig.logConfig());
 	}
 
+	@After
+	public void tearDown() {
+		propertyDao.clear();
+	}
+
 	@Test
 	public void shouldFindPropertyByPostcode() {
-		PropertyEntity property = PropertyEntityBuilder.aDefaultPropertyEntity().reference(1).postcode("W1D 3QU").build();
-		PropertyEntity property2 = PropertyEntityBuilder.aDefaultPropertyEntity().reference(2).postcode("W1F 3FT").build();
+		PropertyEntity property = PropertyEntityBuilder.aDefaultPropertyEntity(1).postcode("W1D 3QU").build();
+		PropertyEntity property2 = PropertyEntityBuilder.aDefaultPropertyEntity(2).postcode("W1F 3FT").build();
 		propertyDao.save(property);
 		propertyDao.save(property2);
 
@@ -59,8 +64,8 @@ public class ApplicationTests {
 
 	@Test
 	public void shouldNotFindPropertyWherePostcodeNotFound() throws Exception {
-		PropertyEntity property = PropertyEntityBuilder.aDefaultPropertyEntity().reference(1).postcode("W1D 3QU").build();
-		PropertyEntity property2 = PropertyEntityBuilder.aDefaultPropertyEntity().reference(2).postcode("W1F 3FT").build();
+		PropertyEntity property = PropertyEntityBuilder.aDefaultPropertyEntity(1).postcode("W1D 3QU").build();
+		PropertyEntity property2 = PropertyEntityBuilder.aDefaultPropertyEntity(2).postcode("W1F 3FT").build();
 		propertyDao.save(property);
 		propertyDao.save(property2);
 

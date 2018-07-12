@@ -1,8 +1,5 @@
 package com.rightmove.property.data;
 
-import com.rightmove.property.PropertyDao;
-import com.rightmove.property.PropertyEntity;
-import com.rightmove.property.PropertyType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
