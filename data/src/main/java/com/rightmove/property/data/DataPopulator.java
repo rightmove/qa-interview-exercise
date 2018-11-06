@@ -1,10 +1,12 @@
 package com.rightmove.property.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+@Profile("!test")
 @Component
 public class DataPopulator {
 
