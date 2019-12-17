@@ -1,6 +1,6 @@
 package com.rightmove.datasetup;
 
-import com.rightmove.property.data.PropertyEntity;
+import com.rightmove.property.data.Property;
 import com.rightmove.property.data.PropertyType;
 
 public class PropertyEntityBuilder {
@@ -77,7 +77,7 @@ public class PropertyEntityBuilder {
 		return this;
 	}
 
-	public PropertyEntity build() {
-		return new PropertyEntity(id, price, bedrooms, bathrooms, number, address, region, postcode, type);
+	public Property build() {
+		return new Property(id, price, bedrooms, bathrooms, number, address, region, postcode, type);
 	}
 }

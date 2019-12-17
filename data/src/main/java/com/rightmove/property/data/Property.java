@@ -2,7 +2,7 @@ package com.rightmove.property.data;
 
 import java.util.Objects;
 
-public class PropertyEntity {
+public class Property {
 	private final long id;
 	private final long price;
 	private final int bedrooms;
@@ -13,7 +13,7 @@ public class PropertyEntity {
 	private final String postcode;
 	private final PropertyType type;
 
-	public PropertyEntity(long id, long price, int bedrooms, Integer bathrooms, String number, String address, String region, String postcode, PropertyType type) {
+	public Property(long id, long price, int bedrooms, Integer bathrooms, String number, String address, String region, String postcode, PropertyType type) {
 		this.id = id;
 		this.price = price;
 		this.bedrooms = bedrooms;
@@ -65,7 +65,7 @@ public class PropertyEntity {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		PropertyEntity that = (PropertyEntity) o;
+		Property that = (Property) o;
 		return id == that.id;
 	}
 

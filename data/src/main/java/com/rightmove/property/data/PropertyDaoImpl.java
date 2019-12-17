@@ -14,15 +14,15 @@ import java.util.Set;
 @Component
 public class PropertyDaoImpl implements PropertyDao {
 
-	private static Map<Long, PropertyEntity> properties = new HashMap<>();
+	private static Map<Long, Property> properties = new HashMap<>();
 
 	@Override
-	public Optional<PropertyEntity> getOne(long id) {
+	public Optional<Property> getOne(long id) {
 		return Optional.ofNullable(properties.get(id));
 	}
 
 	@Override
-	public Set<PropertyEntity> getAll() {
+	public Set<Property> getAll() {
 		return new HashSet<>(properties.values());
 	}
 
@@ -32,7 +32,7 @@ public class PropertyDaoImpl implements PropertyDao {
 	}
 
 	@Override
-	public void save(PropertyEntity propertyEntity) {
+	public void save(Property propertyEntity) {
 		properties.put(propertyEntity.getId(), propertyEntity);
 	}
 }

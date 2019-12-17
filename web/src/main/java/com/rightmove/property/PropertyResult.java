@@ -1,18 +1,18 @@
 package com.rightmove.property;
 
-import com.rightmove.property.data.PropertyEntity;
+import com.rightmove.property.data.Property;
 
 import java.util.List;
 
 public class PropertyResult {
 
-	private List<PropertyEntity> properties;
+	private List<Property> properties;
 
-	public PropertyResult(List<PropertyEntity> properties) {
+	public PropertyResult(List<Property> properties) {
 		this.properties = properties;
 	}
 
-	public List<PropertyEntity> getProperties() {
+	public List<Property> getProperties() {
 		return properties;
 	}
 }
