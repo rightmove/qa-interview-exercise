@@ -2,7 +2,7 @@ package com.rightmove;
 
 import com.rightmove.datasetup.PropertyEntityBuilder;
 import com.rightmove.property.data.PropertyDao;
-import com.rightmove.property.data.Property;
+import com.rightmove.property.data.PropertyEntity;
 import io.restassured.RestAssured;
 import io.restassured.config.LogConfig;
 import io.restassured.http.ContentType;
@@ -43,8 +43,8 @@ public class ApplicationTests {
 
 	@Test
 	public void shouldFindPropertyByPostcode() {
-		Property property = PropertyEntityBuilder.aDefaultPropertyEntity(1).postcode("W1D 3QU").build();
-		Property property2 = PropertyEntityBuilder.aDefaultPropertyEntity(2).postcode("W1F 3FT").build();
+		PropertyEntity property = PropertyEntityBuilder.aDefaultPropertyEntity(1).postcode("W1D 3QU").build();
+		PropertyEntity property2 = PropertyEntityBuilder.aDefaultPropertyEntity(2).postcode("W1F 3FT").build();
 		propertyDao.save(property);
 		propertyDao.save(property2);
 
@@ -64,8 +64,8 @@ public class ApplicationTests {
 
 	@Test
 	public void shouldNotFindPropertyWherePostcodeNotFound() throws Exception {
-		Property property = PropertyEntityBuilder.aDefaultPropertyEntity(1).postcode("W1D 3QU").build();
-		Property property2 = PropertyEntityBuilder.aDefaultPropertyEntity(2).postcode("W1F 3FT").build();
+		PropertyEntity property = PropertyEntityBuilder.aDefaultPropertyEntity(1).postcode("W1D 3QU").build();
+		PropertyEntity property2 = PropertyEntityBuilder.aDefaultPropertyEntity(2).postcode("W1F 3FT").build();
 		propertyDao.save(property);
 		propertyDao.save(property2);
 
