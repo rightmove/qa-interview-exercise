@@ -18,7 +18,7 @@ public class DataPopulator {
 
 	@PostConstruct
 	public void insertPropertyData() {
-		propertyDao.save(new PropertyEntity(1L,1000000L,7,2,"12","Richard Lane","London","W1F 3FT",PropertyType.DETACHED));
+		propertyDao.save(new PropertyEntity(1L,1000000L,7,2,"12","Richard Lane","London","W1F 3ER",PropertyType.DETACHED));
 		propertyDao.save(new PropertyEntity(2L,100000L,2,1,"22","Brick Road","Sheffield","SH1 1AW",PropertyType.TERRACED));
 		propertyDao.save(new PropertyEntity(3L,225000L,5,0,"40","Yellow Lane","Manchester","MA12 3ZY",PropertyType.DETACHED));
 		propertyDao.save(new PropertyEntity(4L,150000L,1,1,"3B","Red Admiral Court","Essex","RM2 6ET",PropertyType.FLAT));
