@@ -41,44 +41,5 @@ public class ApplicationTests {
 		propertyDao.clear();
 	}
 
-	@Test
-	public void shouldFindPropertyByPostcode() {
-		PropertyEntity property = PropertyEntityBuilder.aDefaultPropertyEntity(1).postcode("W1D 3QU").build();
-		PropertyEntity property2 = PropertyEntityBuilder.aDefaultPropertyEntity(2).postcode("W1F 3FT").build();
-		propertyDao.save(property);
-		propertyDao.save(property2);
 
-		JsonPath jsonPath = given()
-				.when()
-				.accept(ContentType.JSON)
-				.queryParam("postcode", "W1D 3QU")
-				.get("/property")
-				.then()
-				.statusCode(HttpStatus.SC_OK)
-				.extract()
-				.jsonPath();
-
-		assertThat(jsonPath.getList("properties")).hasSize(1);
-		assertThat(jsonPath.getLong("properties[0].id")).isEqualTo(1L);
-	}
-
-	@Test
-	public void shouldNotFindPropertyWherePostcodeNotFound() throws Exception {
-		PropertyEntity property = PropertyEntityBuilder.aDefaultPropertyEntity(1).postcode("W1D 3QU").build();
-		PropertyEntity property2 = PropertyEntityBuilder.aDefaultPropertyEntity(2).postcode("W1F 3FT").build();
-		propertyDao.save(property);
-		propertyDao.save(property2);
-
-		JsonPath jsonPath = given()
-				.when()
-				.accept(ContentType.JSON)
-				.queryParam("postcode", "WA11 9RW")
-				.get("/property")
-				.then()
-				.statusCode(HttpStatus.SC_OK)
-				.extract()
-				.jsonPath();
-
-		assertThat(jsonPath.getList("properties")).hasSize(0);
-	}
 }
