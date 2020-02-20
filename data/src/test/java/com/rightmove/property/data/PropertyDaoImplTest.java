@@ -12,24 +12,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PropertyDaoImplTest {
 
-	private PropertyDaoImpl underTest;
+	private PropertyDaoImpl propertyDao;
 
 	@Before
 	public void setup() {
-	    underTest = new PropertyDaoImpl();
+	    propertyDao = new PropertyDaoImpl();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-	    underTest.clear();
+	    propertyDao.clear();
 	}
 
 	@Test
 	public void shouldSaveProperty() throws Exception {
 		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
-		underTest.save(property);
+		propertyDao.save(property);
 
-		Optional<PropertyEntity> one = underTest.getOne(1L);
+		Optional<PropertyEntity> one = propertyDao.getOne(1L);
 
 		assertThat(one).isPresent();
 		assertThat(one.get().getId()).isEqualTo(1L);
@@ -37,7 +37,7 @@ public class PropertyDaoImplTest {
 
 	@Test
 	public void shouldReturnOptionalEmptyWhenPropertyNotFound() throws Exception {
-		Optional<PropertyEntity> one = underTest.getOne(1L);
+		Optional<PropertyEntity> one = propertyDao.getOne(1L);
 
 		assertThat(one).isNotPresent();
 	}
@@ -45,13 +45,13 @@ public class PropertyDaoImplTest {
 	@Test
 	public void shouldReturnDifferentList() throws Exception {
 		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
-		underTest.save(property);
+		propertyDao.save(property);
 
-		Set<PropertyEntity> propertyEntityList = underTest.getAll();
+		Set<PropertyEntity> propertyEntityList = propertyDao.getAll();
 
 		propertyEntityList.add(new PropertyEntity(2L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT));
 
-		Set<PropertyEntity> result = underTest.getAll();
+		Set<PropertyEntity> result = propertyDao.getAll();
 
 		assertThat(result).hasSize(1);
 	}
@@ -60,15 +60,15 @@ public class PropertyDaoImplTest {
 	public void shouldUpdateProperty() throws Exception {
 		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 
-		underTest.save(property);
+		propertyDao.save(property);
 
 		PropertyEntity propertyUpdate = new PropertyEntity(1L, 200_000L, 3, 1, "34", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 
-		underTest.save(propertyUpdate);
+		propertyDao.save(propertyUpdate);
 
-		Optional<PropertyEntity> result = underTest.getOne(1L);
+		Optional<PropertyEntity> result = propertyDao.getOne(1L);
 
-		assertThat(underTest.getAll()).hasSize(1);
+		assertThat(propertyDao.getAll()).hasSize(1);
 		assertThat(result.get().getPrice()).isEqualTo(200_000L);
 		assertThat(result.get().getId()).isEqualTo(1L);
 	}
@@ -77,11 +77,11 @@ public class PropertyDaoImplTest {
 	public void shouldDeleteAllProperties() throws Exception {
 		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 
-		underTest.save(property);
+		propertyDao.save(property);
 
-		underTest.clear();
+		propertyDao.clear();
 
-		Set<PropertyEntity> propertyEntities = underTest.getAll();
+		Set<PropertyEntity> propertyEntities = propertyDao.getAll();
 
 		assertThat(propertyEntities).isEmpty();
 	}
@@ -91,16 +91,16 @@ public class PropertyDaoImplTest {
 		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 		PropertyEntity property2 = new PropertyEntity(2L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 
-		underTest.save(property);
-		underTest.save(property2);
+		propertyDao.save(property);
+		propertyDao.save(property2);
 
-		Set<PropertyEntity> propertyEntities = underTest.getAll();
+		Set<PropertyEntity> propertyEntities = propertyDao.getAll();
 
 		assertThat(propertyEntities).hasSize(2);
 	}
 
 	@Test
 	public void shouldReturnEmptyListWhenNoProperties() throws Exception {
-		assertThat(underTest.getAll()).isEmpty();
+		assertThat(propertyDao.getAll()).isEmpty();
 	}
 }
