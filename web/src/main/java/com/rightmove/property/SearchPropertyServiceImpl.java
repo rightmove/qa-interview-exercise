@@ -1,6 +1,7 @@
 package com.rightmove.property;
 
 import com.rightmove.property.data.PropertyDao;
+import com.rightmove.property.data.PropertyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,24 @@ public class SearchPropertyServiceImpl implements SearchPropertyService {
 
     @Override
     public PropertyResult retrievePropertiesByPostcode(String postcode) {
-        return new PropertyResult(
-                propertyDao.getAll().stream()
-                .filter(propertyEntity -> postcode.equals(propertyEntity.getPostcode()))
-                .map(propertyEntityToDisplayPropertyConverter::convert)
-                .collect(Collectors.toList()));
+        if (isValidPostcode(postcode)){
+            return new PropertyResult(
+                    propertyDao.getAll().stream()
+                    .filter(propertyEntity -> hasPostcode(postcode,propertyEntity))
+                    .map(propertyEntityToDisplayPropertyConverter::convert)
+                    .collect(Collectors.toList()));
+        } else {
+            throw new RuntimeException("not valid postcode");
+        }
+    }
+
+    private boolean isValidPostcode(String postcode){
+        if (postcode.length() > 100) return false;
+        return true;
+    }
+
+    private boolean hasPostcode(String postcode, PropertyEntity propertyEntity){
+        return postcode.equals(propertyEntity.getPostcode());
     }
 
 }
