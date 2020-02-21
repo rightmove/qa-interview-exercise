@@ -6,13 +6,13 @@ import java.util.List;
 
 public class PropertyResult {
 
-	private List<PropertyEntity> properties;
+	private List<DisplayProperty> properties;
 
-	public PropertyResult(List<PropertyEntity> properties) {
+	public PropertyResult(List<DisplayProperty> properties) {
 		this.properties = properties;
 	}
 
-	public List<PropertyEntity> getProperties() {
+	public List<DisplayProperty> getProperties() {
 		return properties;
 	}
 }

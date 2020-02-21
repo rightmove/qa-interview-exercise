@@ -22,19 +22,3 @@ public class PropertyController {
 	}
 
 }
-
-//@RestController
-//public class PropertyController {
-//
-//	private final SearchPropertyService searchPropertyService;
-//
-//	@Autowired
-//	public PropertyController(SearchPropertyService searchPropertyService) {
-//		this.searchPropertyService = searchPropertyService;
-//	}
-//
-//	@RequestMapping(path = "/property/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody Property getPropertyById(@PathVariable long id) {
-//		return searchPropertyService.retrieveProperty(id);
-//	}
-//}

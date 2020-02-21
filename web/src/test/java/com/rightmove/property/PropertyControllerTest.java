@@ -4,21 +4,15 @@ import com.rightmove.property.data.PropertyEntity;
 import com.rightmove.property.data.PropertyType;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.ui.Model;
-import org.springframework.web.client.HttpClientErrorException;
-import org.junit.runner.RunWith;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.jayway.restassured.module.mockmvc.RestAssuredMockMvc.given;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
-import static org.junit.Assert.*;
 
 public class PropertyControllerTest {
 
@@ -37,8 +31,8 @@ public class PropertyControllerTest {
     @Test
     public void test1(){
         String postcode = "W1D 3QU";
-        List<PropertyEntity> properties = new ArrayList<>();
-        properties.add(new PropertyEntity(1L,1000000L,7,2,"12","Richard Lane","London","W1F 3ER", PropertyType.DETACHED));
+        List<DisplayProperty> properties = new ArrayList<>();
+        properties.add(new DisplayProperty.Builder().id(1).displayAddress("1 Dragon Street " + postcode).priceIndicator(PriceIndicator.HIGH).propertyType(PropertyType.FLAT).build());
         PropertyResult propertyResult = new PropertyResult(properties);
         when(searchPropertyService.retrievePropertiesByPostcode(any())).thenReturn(propertyResult);
         given().
