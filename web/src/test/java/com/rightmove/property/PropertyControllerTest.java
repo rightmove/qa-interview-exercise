@@ -1,6 +1,5 @@
 package com.rightmove.property;
 
-import com.rightmove.property.data.PropertyEntity;
 import com.rightmove.property.data.PropertyType;
 import org.junit.Before;
 import org.junit.Test;
