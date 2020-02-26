@@ -13,7 +13,7 @@ public class PropertyEntityToDisplayPropertyConverter {
         return new DisplayProperty.Builder()
                 .id(propertyEntity.getId())
                 .priceIndicator(calculatePriceIndicator(propertyEntity.getPrice()))
-                .displayAddress(createDisplayAddress(propertyEntity.getNumber(), propertyEntity.getAddress(), propertyEntity.getRegion(), propertyEntity.getPostcode()))
+                .displayAddress(createDisplayAddress(propertyEntity.getNumber().length(), propertyEntity.getAddress(), propertyEntity.getRegion(), propertyEntity.getPostcode()))
                 .propertyType(propertyEntity.getType())
                 .build();
 
@@ -29,7 +29,7 @@ public class PropertyEntityToDisplayPropertyConverter {
         else return PriceIndicator.LOW;
     }
 
-    private String createDisplayAddress(String number, String address, String region, String postcode){
+    private String createDisplayAddress(Integer number, String address, String region, String postcode){
        return number + " " + address + ", " + region + ", " + postcode;
     }
 
