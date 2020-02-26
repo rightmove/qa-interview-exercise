@@ -30,7 +30,7 @@ public class PropertyEntityToDisplayPropertyConverter {
     }
 
     private String createDisplayAddress(Integer number, String address, String region, String postcode){
-       return number + " " + address + ", " + region + ", " + postcode;
+       return number + ", " + address + ", " + region + ", " + postcode;
     }
 
 }

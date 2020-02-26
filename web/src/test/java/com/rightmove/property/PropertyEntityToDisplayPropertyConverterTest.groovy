@@ -5,7 +5,6 @@ import spock.lang.Unroll
 
 class PropertyEntityToDisplayPropertyConverterTest extends Specification {
 
-
     @Unroll
     def "when price is #price price indicator should be #priceIndicator"(){
         def propertyEntityToDisplayPropertyConverter = new PropertyEntityToDisplayPropertyConverter();
