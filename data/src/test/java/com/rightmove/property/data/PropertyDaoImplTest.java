@@ -1,31 +1,30 @@
 package com.rightmove.property.data;
 
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PropertyDaoImplTest {
+class PropertyDaoImplTest {
 
 	private PropertyDaoImpl propertyDao;
 
-	@Before
-	public void setup() {
+	@BeforeEach
+	void setup() {
 	    propertyDao = new PropertyDaoImpl();
 	}
 
-	@After
-	public void tearDown() throws Exception {
+	@AfterEach
+	void tearDown() {
 	    propertyDao.clear();
 	}
 
 	@Test
-	public void shouldSaveProperty() throws Exception {
+	void shouldSaveProperty() {
 		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 		propertyDao.save(property);
 
@@ -36,14 +35,14 @@ public class PropertyDaoImplTest {
 	}
 
 	@Test
-	public void shouldReturnOptionalEmptyWhenPropertyNotFound() throws Exception {
+	void shouldReturnOptionalEmptyWhenPropertyNotFound() {
 		Optional<PropertyEntity> one = propertyDao.getOne(1L);
 
 		assertThat(one).isNotPresent();
 	}
 
 	@Test
-	public void shouldReturnDifferentList() throws Exception {
+	void shouldReturnDifferentList() {
 		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 		propertyDao.save(property);
 
@@ -57,7 +56,7 @@ public class PropertyDaoImplTest {
 	}
 
 	@Test
-	public void shouldUpdateProperty() throws Exception {
+	void shouldUpdateProperty() {
 		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 
 		propertyDao.save(property);
@@ -74,7 +73,7 @@ public class PropertyDaoImplTest {
 	}
 
 	@Test
-	public void shouldDeleteAllProperties() throws Exception {
+	void shouldDeleteAllProperties() {
 		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 
 		propertyDao.save(property);
@@ -87,7 +86,7 @@ public class PropertyDaoImplTest {
 	}
 
 	@Test
-	public void shouldGetAll() throws Exception {
+	void shouldGetAll() {
 		PropertyEntity property = new PropertyEntity(1L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 		PropertyEntity property2 = new PropertyEntity(2L, 100_000L, 3, 1, "33", "Soho Square", "London", "W1D 3QU", PropertyType.FLAT);
 
@@ -100,7 +99,7 @@ public class PropertyDaoImplTest {
 	}
 
 	@Test
-	public void shouldReturnEmptyListWhenNoProperties() throws Exception {
+	void shouldReturnEmptyListWhenNoProperties() {
 		assertThat(propertyDao.getAll()).isEmpty();
 	}
 }

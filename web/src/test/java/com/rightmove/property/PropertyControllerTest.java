@@ -1,15 +1,15 @@
 package com.rightmove.property;
 
 import com.rightmove.property.data.PropertyType;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.jayway.restassured.module.mockmvc.RestAssuredMockMvc.given;
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -20,7 +20,7 @@ public class PropertyControllerTest {
     private SearchPropertyService searchPropertyService;
     private PropertyResult propertyResult;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         searchPropertyService = mock(SearchPropertyService.class);
         propertyController = new PropertyController(searchPropertyService);
