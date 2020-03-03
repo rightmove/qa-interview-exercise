@@ -24,6 +24,6 @@ Technologies
 ------------
 * Gradle
 * Spring Boot 2
-* JUnit 4
+* JUnit 5
 
 You can use any other technologies to complete the task
