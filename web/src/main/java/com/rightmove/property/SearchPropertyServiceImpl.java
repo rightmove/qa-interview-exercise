@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 public class SearchPropertyServiceImpl implements SearchPropertyService {
 
     private final PropertyDao propertyDao;
-    private final PropertyEntityToDisplayPropertyConverter propertyEntityToDisplayPropertyConverter;
+    private final PropertyEntityToDisplayPropertyConverter converter;
 
     @Autowired
-    public SearchPropertyServiceImpl(PropertyDao propertyDao, PropertyEntityToDisplayPropertyConverter propertyEntityToDisplayPropertyConverter){
+    public SearchPropertyServiceImpl(PropertyDao propertyDao, PropertyEntityToDisplayPropertyConverter converter){
         this.propertyDao = propertyDao;
-        this.propertyEntityToDisplayPropertyConverter = propertyEntityToDisplayPropertyConverter;
+        this.converter = converter;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class SearchPropertyServiceImpl implements SearchPropertyService {
         if (isValidPostcode(postcode)){
             return propertyDao.getByPostcode(postcode)
                             .stream()
-                            .map(propertyEntityToDisplayPropertyConverter::convert)
+                            .map(converter::convert)
                             .collect(Collectors.toList());
         } else {
             throw new RuntimeException("not valid postcode");
