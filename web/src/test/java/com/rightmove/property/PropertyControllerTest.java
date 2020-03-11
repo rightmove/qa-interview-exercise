@@ -18,7 +18,6 @@ public class PropertyControllerTest {
     private MockMvc mockMvc;
     private PropertyController propertyController;
     private SearchPropertyService searchPropertyService;
-    private PropertyResult propertyResult;
 
     @BeforeEach
     public void setUp() {
@@ -32,8 +31,7 @@ public class PropertyControllerTest {
         String postcode = "W1D 3QU";
         List<DisplayProperty> properties = new ArrayList<>();
         properties.add(new DisplayProperty.Builder().id(1).displayAddress("1 Dragon Street " + postcode).priceIndicator(PriceIndicator.HIGH).propertyType(PropertyType.FLAT).build());
-        PropertyResult propertyResult = new PropertyResult(properties);
-        when(searchPropertyService.retrievePropertiesByPostcode(any())).thenReturn(propertyResult);
+        when(searchPropertyService.retrievePropertiesByPostcode(any())).thenReturn(properties);
         given().
                 mockMvc(mockMvc)
                 .param("postcode", postcode)
