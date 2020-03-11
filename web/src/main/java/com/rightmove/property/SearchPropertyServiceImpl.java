@@ -23,10 +23,10 @@ public class SearchPropertyServiceImpl implements SearchPropertyService {
     public PropertyResult retrievePropertiesByPostcode(String postcode) {
         if (isValidPostcode(postcode)){
             return new PropertyResult(
-                    propertyDao.getAll().stream()
-                    .filter(propertyEntity -> hasPostcode(postcode,propertyEntity))
-                    .map(propertyEntityToDisplayPropertyConverter::convert)
-                    .collect(Collectors.toList()));
+                    propertyDao.getByPostcode(postcode)
+                            .stream()
+                            .map(propertyEntityToDisplayPropertyConverter::convert)
+                            .collect(Collectors.toList()));
         } else {
             throw new RuntimeException("not valid postcode");
         }
@@ -35,10 +35,6 @@ public class SearchPropertyServiceImpl implements SearchPropertyService {
     private boolean isValidPostcode(String postcode){
         if (postcode.length() > 100) return false;
         return true;
-    }
-
-    private boolean hasPostcode(String postcode, PropertyEntity propertyEntity){
-        return postcode.equals(propertyEntity.getPostcode());
     }
 
 }
