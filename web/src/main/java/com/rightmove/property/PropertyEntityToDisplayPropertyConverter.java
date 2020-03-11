@@ -12,8 +12,14 @@ public class PropertyEntityToDisplayPropertyConverter {
 
         return new DisplayProperty.Builder()
                 .id(propertyEntity.getId())
-                .priceIndicator(calculatePriceIndicator(propertyEntity.getPrice()))
-                .displayAddress(createDisplayAddress(propertyEntity.getNumber().length(), propertyEntity.getAddress(), propertyEntity.getRegion(), propertyEntity.getPostcode()))
+                .priceIndicator(
+                        calculatePriceIndicator(propertyEntity.getPrice()))
+                .displayAddress(
+                        createDisplayAddress(
+                                propertyEntity.getNumber().length(),
+                                propertyEntity.getAddress(),
+                                propertyEntity.getRegion(),
+                                propertyEntity.getPostcode()))
                 .propertyType(propertyEntity.getType())
                 .build();
 
