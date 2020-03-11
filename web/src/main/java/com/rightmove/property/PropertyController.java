@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class PropertyController {
 
@@ -17,7 +19,8 @@ public class PropertyController {
 	}
 
 	@GetMapping("/property")
-	public @ResponseBody PropertyResult getPropertiesByPostcode(@RequestParam String postcode)  {
+	public @ResponseBody
+	List<DisplayProperty> getPropertiesByPostcode(@RequestParam String postcode)  {
 		return searchPropertyService.retrievePropertiesByPostcode(postcode);
 	}
 

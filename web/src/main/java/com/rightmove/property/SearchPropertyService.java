@@ -1,5 +1,7 @@
 package com.rightmove.property;
 
+import java.util.List;
+
 public interface SearchPropertyService {
-    public PropertyResult retrievePropertiesByPostcode(String postcode);
+    public List<DisplayProperty> retrievePropertiesByPostcode(String postcode);
 }
