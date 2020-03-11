@@ -30,4 +30,6 @@ public interface PropertyDao {
 	 * @param propertyEntity The {@code PropertyEntity} to save to the repository.
 	 */
 	void save(PropertyEntity propertyEntity);
+
+	Set<PropertyEntity> getByPostcode(String postcode);
 }
