@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * A simple in memory implementation of the {@link PropertyDao}.
@@ -34,5 +35,13 @@ public class PropertyDaoImpl implements PropertyDao {
 	@Override
 	public void save(PropertyEntity propertyEntity) {
 		properties.put(propertyEntity.getId(), propertyEntity);
+	}
+
+	@Override
+	public Set<PropertyEntity> getByPostcode(String postcode) {
+		return getAll()
+				.stream()
+				.filter(propertyEntity -> postcode.equals(propertyEntity.getPostcode()))
+				.collect(Collectors.toSet());
 	}
 }
