@@ -1,0 +1,59 @@
+package com.rightmove.property;
+
+import com.rightmove.property.data.PropertyType;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.web.servlet.MockMvc;
+import javax.servlet.http.HttpServletResponse;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+
+public class PropertyControllerTest {
+
+    private MockMvc mockMvc;
+    private PropertyController propertyController;
+    private SearchPropertyService searchPropertyService;
+
+    @BeforeEach
+    public void setUp() {
+        searchPropertyService = mock(SearchPropertyService.class);
+        propertyController = new PropertyController(searchPropertyService);
+        mockMvc = standaloneSetup(propertyController).build();
+    }
+
+    @Test
+    public void test1(){
+        String postcode = "W1D 3QU";
+        List<DisplayProperty> properties = new ArrayList<>();
+        properties.add(new DisplayProperty.Builder().id(1).displayAddress("1 Dragon Street " + postcode).priceIndicator(PriceIndicator.HIGH).propertyType(PropertyType.FLAT).build());
+        when(searchPropertyService.retrievePropertiesByPostcode(any())).thenReturn(properties);
+        given().
+                mockMvc(mockMvc)
+                .param("postcode", postcode)
+                .when()
+                .get("/property")
+                .then()
+                .statusCode(HttpServletResponse.SC_OK);
+
+    }
+
+    @Test
+    public void test2(){
+        String postcode = "W1D 3QU";
+        propertyController.getPropertiesByPostcode(postcode);
+        verify(searchPropertyService, times(1)).retrievePropertiesByPostcode(postcode);
+    }
+
+    @Test
+    public void test3(){
+        String postcode = "";
+        propertyController.getPropertiesByPostcode(postcode);
+        verify(searchPropertyService, times(0)).retrievePropertiesByPostcode(postcode);
+    }
+
+}
